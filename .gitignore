@@ -1,0 +1,5 @@
+node_modules
+.env
+.env.E2E
+.vscode
+dist
