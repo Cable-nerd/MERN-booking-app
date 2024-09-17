@@ -51,5 +51,7 @@ export const useAppContext = () => {
   if (!context) {
     throw new Error("useAppContext must be used within an AppContextProvider");
   }
+  
   return context;
+
 };

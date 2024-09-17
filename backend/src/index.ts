@@ -1,13 +1,14 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
-
 import mongoose from "mongoose";
 import userRoutes from "./routes/users";
 import authRoutes from "./routes/auth";
 import cookieParser from "cookie-parser";
 import path from "path";
 import { v2 as cloudinary } from "cloudinary"
+import myHotelRoutes from "./routes/my-hotels";
+
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -31,10 +32,13 @@ app.use(
   })
 );
 
+// serve static file, used when fropntend and backend both are to be used alltogether, it serves the frontend application files from the foler, when users hit your server
 app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/my-hotels", myHotelRoutes);
+
 
 app.listen(7000, () => {
   console.log("server is running on localhost:7000");

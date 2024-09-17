@@ -2,7 +2,7 @@ import { RegisterFormData } from "./pages/Register";
 import { SignInFormData } from "./pages/SignIn";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
-console.log(API_BASE_URL);
+console.log("Api base URL" + API_BASE_URL);
 
 export const register = async (formData: RegisterFormData) => {
   const response = await fetch(`${API_BASE_URL}/api/users/register`, {
@@ -41,8 +41,9 @@ export const validateToken = async () => {
   const response = await fetch(`${API_BASE_URL}/api/auth/validate-token`, {
     credentials: "include",
   });
+
   if (!response.ok) {
-    throw new Error("token invalid");
+    throw new Error("Token invalid");
   }
 
   return response.json();
@@ -56,4 +57,18 @@ export const signOut = async () => {
   if (!response.ok) {
     throw new Error("Failed to sign out");
   }
-}
+};
+
+export const addMyHotel = async (HotelFormData: FormData) => {
+  const response = await fetch(`${API_BASE_URL}/api/my-hotels`, {
+    method: "POST",
+    credentials: "include",
+    body: HotelFormData,
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to add hotel");
+  }
+
+  return response.json();
+};
