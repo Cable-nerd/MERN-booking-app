@@ -1,9 +1,10 @@
 import express, { Request, Response } from "express";
 import multer from "multer";
 import cloudinary from "cloudinary";
-import Hotel, { HotelType } from "../models/hotel";
 import verifyToken from "../middleware/Auth";
 import { body } from "express-validator";
+import { HotelType } from "../shared/types";
+import Hotel from "../models/hotel";
 
 const router = express.Router();
 
@@ -131,6 +132,3 @@ async function uploadImages(imageFiles: Express.Multer.File[]) {
 }
 
 export default router;
-
-
-
