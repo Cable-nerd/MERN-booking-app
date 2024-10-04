@@ -18,6 +18,7 @@ const upload = multer({
 
 // api/my-hotels
 // api/my-hotels
+
 router.post(
   "/",
   verifyToken,
@@ -69,9 +70,11 @@ router.get("/", verifyToken, async (req: Request, res: Response) => {
 });
 
 router.get("/:id", verifyToken, async (req: Request, res: Response) => {
+  // /api/my-hotels/:id
   const id = req.params.id.toString();
   try {
     const hotel = await Hotel.findOne({
+      // findOne b.c while routing towards editing we want to fetch the single hotel being edited
       _id: id,
       userId: req.userId,
     });

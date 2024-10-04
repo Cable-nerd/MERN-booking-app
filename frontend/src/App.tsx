@@ -11,6 +11,7 @@ import AddHotel from "./pages/AddHotel";
 import { useAppContext } from "./contexts/AppContext";
 import { useState } from "react";
 import MyHotels from "./pages/MyHotels";
+import EditHotel from "./pages/EditHotel";
 
 function App() {
   const isLoggedIn = useAppContext();
@@ -69,6 +70,15 @@ function App() {
                 </Layout>
               }
             />
+              <Route
+              path="/edit-hotel/:hotelId"
+              element={
+                <Layout>
+                  <EditHotel />
+                </Layout>
+              }
+            />
+          
           </>
         )}
         <Route path="*" element={<Navigate to="/" />} />
